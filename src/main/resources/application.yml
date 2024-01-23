@@ -33,16 +33,6 @@ spring:
     hibernate:
       ddl-auto: create
 oauth:
-  kakao:
-    client_id: 3fcfbbd0e2ff98f1dba3e5567758dad0
-    redirect_uri: http://localhost:3000/oauth/redirected/kakao
-    client_secret: RmxyOJX4emsK3yQ2ZU46Zdxvvj48CBCC
-    scope: profile_nickname, profile_image
-  naver:
-    client_id: nzoK10X6IukygRJeLJF2
-    redirect_uri: http://localhost:3000/oauth/redirected/naver
-    client_secret: kDFbiNgKoc
-    scope: nickname, profileImage
   google:
     client_id: ${GOOGLE_CLIENT_ID}
     redirect_uri: ${GOOGLE_REDIRECT_URI}
