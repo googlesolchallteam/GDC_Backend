@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/closet
+    username: root
+    password: ""
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
+oauth.kakao:
+    client_id: c4e94947deab87e739574d53dcda94ba # REST API 키
+    redirect_uri: http://localhost:3000/oauth/redirected/kakao
+    client_secret: MuAMb16P1Ks3d13kscAQFSHiNPV5fRas # Client Secret 키
+    scope: profile_nickname, profile_image
