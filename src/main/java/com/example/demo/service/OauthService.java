@@ -35,7 +35,7 @@ public class OauthService {
         return authCodeRequestUrlProviderComposite.provide(oauthServerType);
     }
 
-    public void getKakaoUserInfo(String code) throws JsonProcessingException {
+    public MemberEntity getKakaoUserInfo(String code) throws JsonProcessingException {
         String accessToken = requestKakaoAccessToken(code);
         // Kakao 사용자 정보 요청
         String responseBody = requestKakaoUserProfile(accessToken);
@@ -53,7 +53,7 @@ public class OauthService {
         memberEntity.setProfileImage(profileImage);
 
         memberRepository.save(memberEntity);
-
+        return memberEntity;
     }
 
     private String requestKakaoUserProfile(String accessToken) {

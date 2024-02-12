@@ -12,27 +12,30 @@ public class BoardEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long boardID;
+    private Long boardId;
 
+    @Column
     private String title;
-
+    @Column
     private String contents;
-
+    @Column
     private Long price;
-
+    @Column
     private String gender;
-
+    @Column
     private String clothCategory;
-
+    @Column
     private String place;
 
     @Column(name = "creation_time")
     private String currentTime;
 
+
+    @Column(length = 2047)
     private String postImg;
 
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "serverId")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "serverId")
     private MemberEntity memberEntity = new MemberEntity();
 
 // 생성자, getter, setter 등 필요한 부분을 추가하세요

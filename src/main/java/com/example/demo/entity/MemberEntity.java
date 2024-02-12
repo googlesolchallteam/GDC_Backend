@@ -26,4 +26,10 @@ public class MemberEntity {
     @Column(name = "profile_Image")
     private String profileImage;
 
+    public MemberEntity(Long serverId, List<BoardEntity> boardEntities, String nickname, String profileImage) {
+        this.serverId = serverId;
+        this.boardEntities = boardEntities;
+        this.nickname = nickname;
+        this.profileImage = profileImage;
+    }
 }

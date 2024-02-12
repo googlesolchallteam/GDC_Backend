@@ -1,6 +1,6 @@
 package com.example.demo.contoroller;
 
-import com.example.demo.entity.BoardEntity;
+import com.example.demo.dto.BoardResponseDTO;
 import com.example.demo.service.BoardService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Controller
@@ -29,39 +28,37 @@ public class BoardController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<BoardEntity>> search(@RequestParam String category) {
-        List<BoardEntity> boardEntities = boardService.search(category);
-        return new ResponseEntity<>(boardEntities, HttpStatus.OK);
+    public ResponseEntity<List<BoardResponseDTO>> search(@RequestParam(required = false) String title,
+                                                    @RequestParam(required = false) String gender,
+                                                    @RequestParam(required = false) String clothCategory,
+                                                    @RequestParam(required = false) String place) throws JsonProcessingException {
+        System.out.println("들어옴");
+        List<BoardResponseDTO> boardResponseDTOList = boardService.search(title, gender, clothCategory, place);
+        return new ResponseEntity<>(boardResponseDTOList, HttpStatus.OK);
     }
 
-    @GetMapping("/user")
-    public ResponseEntity<List<BoardEntity>> findById(@RequestParam Long serverId) {
-        List<BoardEntity> boardEntities = boardService.findByServerId(serverId);
-        return new ResponseEntity<>(boardEntities, HttpStatus.OK);
+    @GetMapping("/user/{serverId}")
+    public ResponseEntity<List<BoardResponseDTO>> findById(@PathVariable String serverId) throws JsonProcessingException {
+        List<BoardResponseDTO> boardResponseDTOList = boardService.findByServerId(Long.parseLong(serverId));
+        return new ResponseEntity<>(boardResponseDTOList, HttpStatus.OK);
     }
 
     @PostMapping("/update")
-    public ResponseEntity<BoardEntity> update(@RequestBody String boardData) throws JsonProcessingException {
-        BoardEntity boardEntity = boardService.saveUpdate(boardData);
-        return new ResponseEntity<>(boardEntity, HttpStatus.OK);
+    public ResponseEntity<String> update(@RequestBody String boardData) throws JsonProcessingException {
+        System.out.println(boardData);
+        boardService.saveUpdate(boardData);
+        return new ResponseEntity<>("Ok", HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete")
-    public void delete(@RequestParam Long boardId){
-        boardService.delete(boardId);
+    @DeleteMapping("/delete/{boardId}")
+    public void delete(@PathVariable String boardId){
+        boardService.delete(Long.parseLong(boardId));
     }
 
     @GetMapping("/{boardId}")
-    public ResponseEntity<BoardEntity> showDetail(@PathVariable Long boardId){
-        Optional<BoardEntity> boardEntityOptional = boardService.findByBoardId(boardId);
-        if (boardEntityOptional.isPresent()){
-            BoardEntity boardEntity = boardEntityOptional.get();
-            return new ResponseEntity<>(boardEntity, HttpStatus.OK);
-        }
-        else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // 또는 다른 상태 코드를 사용
-        }
+    public ResponseEntity<BoardResponseDTO> showDetail(@PathVariable String boardId) throws JsonProcessingException {
+        BoardResponseDTO boardResponseDTO = boardService.findByBoardId(Long.parseLong(boardId));
+        return new ResponseEntity<>(boardResponseDTO, HttpStatus.OK);
     }
-
 
 }

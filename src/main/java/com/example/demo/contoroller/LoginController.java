@@ -1,10 +1,12 @@
 package com.example.demo.contoroller;
 
+import com.example.demo.entity.MemberEntity;
 import com.example.demo.login.OauthServerType;
 import com.example.demo.service.OauthService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,9 +29,9 @@ public class LoginController {
     }
 
     @GetMapping("/login/kakao")
-    public ResponseEntity<String> login (@RequestParam("code") String code) throws JsonProcessingException {
-        oauthService.getKakaoUserInfo(code);
-        return ResponseEntity.ok("굳");
+    public ResponseEntity<MemberEntity> login (@RequestParam("code") String code) throws JsonProcessingException {
+        MemberEntity memberEntity = oauthService.getKakaoUserInfo(code);
+        return new ResponseEntity<>(memberEntity, HttpStatus.OK);
     }
 }
 
