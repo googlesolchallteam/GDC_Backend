@@ -32,7 +32,6 @@ public class BoardController {
                                                     @RequestParam(required = false) String gender,
                                                     @RequestParam(required = false) String clothCategory,
                                                     @RequestParam(required = false) String place) throws JsonProcessingException {
-        System.out.println("들어옴");
         List<BoardResponseDTO> boardResponseDTOList = boardService.search(title, gender, clothCategory, place);
         return new ResponseEntity<>(boardResponseDTOList, HttpStatus.OK);
     }
@@ -51,12 +50,14 @@ public class BoardController {
     }
 
     @DeleteMapping("/delete/{boardId}")
-    public void delete(@PathVariable String boardId){
+    public ResponseEntity<String> delete(@PathVariable String boardId){
         boardService.delete(Long.parseLong(boardId));
+        return new ResponseEntity<>("ok", HttpStatus.OK);
     }
 
     @GetMapping("/{boardId}")
     public ResponseEntity<BoardResponseDTO> showDetail(@PathVariable String boardId) throws JsonProcessingException {
+        System.out.println(999);
         BoardResponseDTO boardResponseDTO = boardService.findByBoardId(Long.parseLong(boardId));
         return new ResponseEntity<>(boardResponseDTO, HttpStatus.OK);
     }
