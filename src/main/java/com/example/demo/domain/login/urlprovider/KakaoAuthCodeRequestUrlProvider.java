@@ -1,6 +1,7 @@
-package com.example.demo.login;
+package com.example.demo.domain.login.urlprovider;
 
 import com.example.demo.config.KakaoOauthConfig;
+import com.example.demo.domain.login.dto.OauthServerType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;

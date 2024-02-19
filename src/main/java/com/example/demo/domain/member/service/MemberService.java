@@ -1,7 +1,7 @@
-package com.example.demo.service;
+package com.example.demo.domain.member.service;
 
-import com.example.demo.entity.MemberEntity;
-import com.example.demo.repository.MemberRepository;
+import com.example.demo.domain.member.MemberRepository;
+import com.example.demo.domain.member.entity.MemberEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,11 +1,11 @@
-package com.example.demo.service;
+package com.example.demo.domain.login.service;
 
 import com.example.demo.config.KakaoOauthConfig;
-import com.example.demo.entity.MemberEntity;
-import com.example.demo.login.AuthCodeRequestUrlProviderComposite;
-import com.example.demo.login.OauthServerType;
-import com.example.demo.login.OauthToken;
-import com.example.demo.repository.MemberRepository;
+import com.example.demo.domain.login.dto.OauthServerType;
+import com.example.demo.domain.login.dto.OauthToken;
+import com.example.demo.domain.login.urlprovider.AuthCodeRequestUrlProviderComposite;
+import com.example.demo.domain.member.entity.MemberEntity;
+import com.example.demo.domain.member.MemberRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

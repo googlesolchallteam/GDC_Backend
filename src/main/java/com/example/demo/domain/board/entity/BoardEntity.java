@@ -1,5 +1,6 @@
-package com.example.demo.entity;
+package com.example.demo.domain.board.entity;
 
+import com.example.demo.domain.member.entity.MemberEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,11 +26,12 @@ public class BoardEntity {
     @Column
     private String clothCategory;
     @Column
-    private String place;
+    private String address;
+    @Column
+    private String position;
 
     @Column(name = "creation_time")
     private String currentTime;
-
 
     @Column(length = 2047)
     private String postImg;

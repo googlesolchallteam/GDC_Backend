@@ -1,8 +1,8 @@
-package com.example.demo.contoroller;
+package com.example.demo.domain.login.controller;
 
-import com.example.demo.entity.MemberEntity;
-import com.example.demo.login.OauthServerType;
-import com.example.demo.service.OauthService;
+import com.example.demo.domain.login.dto.OauthServerType;
+import com.example.demo.domain.login.service.OauthService;
+import com.example.demo.domain.member.entity.MemberEntity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

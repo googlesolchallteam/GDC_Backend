@@ -1,7 +1,7 @@
-package com.example.demo.contoroller;
+package com.example.demo.domain.board.controller;
 
-import com.example.demo.dto.BoardResponseDTO;
-import com.example.demo.service.BoardService;
+import com.example.demo.domain.board.dto.BoardResponseDTO;
+import com.example.demo.domain.board.service.BoardService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,16 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
-
+    @GetMapping("")
+    public String dd() {
+        return "hi";
+    }
+    @GetMapping("/all")
+    public ResponseEntity<List<BoardResponseDTO>> findAll() throws JsonProcessingException {
+        List<BoardResponseDTO> boardResponseDTOList = boardService.findAll();
+        System.out.println(boardResponseDTOList.get(0).getPosition());
+        return new ResponseEntity<>(boardResponseDTOList, HttpStatus.OK);
+    }
     @PostMapping(value = "/write", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> save(@RequestBody String boardData) throws JsonProcessingException {
 
@@ -31,8 +40,8 @@ public class BoardController {
     public ResponseEntity<List<BoardResponseDTO>> search(@RequestParam(required = false) String title,
                                                     @RequestParam(required = false) String gender,
                                                     @RequestParam(required = false) String clothCategory,
-                                                    @RequestParam(required = false) String place) throws JsonProcessingException {
-        List<BoardResponseDTO> boardResponseDTOList = boardService.search(title, gender, clothCategory, place);
+                                                    @RequestParam(required = false) String address) throws JsonProcessingException {
+        List<BoardResponseDTO> boardResponseDTOList = boardService.search(title, gender, clothCategory, address);
         return new ResponseEntity<>(boardResponseDTOList, HttpStatus.OK);
     }
 

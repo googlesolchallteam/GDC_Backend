@@ -1,5 +1,6 @@
-package com.example.demo.entity;
+package com.example.demo.domain.member.entity;
 
+import com.example.demo.domain.board.entity.BoardEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

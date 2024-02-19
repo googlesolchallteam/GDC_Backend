@@ -1,5 +1,6 @@
-package com.example.demo.login;
+package com.example.demo.domain.login.urlprovider;
 
+import com.example.demo.domain.login.dto.OauthServerType;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;

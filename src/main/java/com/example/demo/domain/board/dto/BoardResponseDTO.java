@@ -1,6 +1,6 @@
-package com.example.demo.dto;
+package com.example.demo.domain.board.dto;
 
-import com.example.demo.entity.BoardEntity;
+import com.example.demo.domain.board.entity.BoardEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Getter
@@ -21,9 +22,10 @@ public class BoardResponseDTO {
     private Long price;
     private String gender;
     private String clothCategory;
-    private String place;
-    private List<String> postImg;
+    private String address;
 
+    private List<String> postImg;
+    private Map<String, Double> position;
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     private String currentTime;
     private Long serverId;
@@ -37,14 +39,19 @@ public class BoardResponseDTO {
         boardResponseDTO.setPrice(boardEntity.getPrice());
         boardResponseDTO.setGender(boardEntity.getGender());
         boardResponseDTO.setClothCategory(boardEntity.getClothCategory());
-        boardResponseDTO.setPlace(boardEntity.getPlace());
+        boardResponseDTO.setAddress(boardEntity.getAddress());
         boardResponseDTO.setPostImg(toList(boardEntity.getPostImg()));
         boardResponseDTO.setServerId(boardEntity.getMemberEntity().getServerId());
+        boardResponseDTO.setPosition(toMap(boardEntity.getPosition()));
         return boardResponseDTO;
     }
 
     public static List<String> toList(String postImgs) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(postImgs, new TypeReference<List<String>>() {});
+    }
+    public static Map<String, Double> toMap(String postImgs) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(postImgs, new TypeReference<Map<String, Double>>() {});
     }
 }

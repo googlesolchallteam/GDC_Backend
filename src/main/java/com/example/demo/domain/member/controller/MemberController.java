@@ -1,6 +1,6 @@
-package com.example.demo.contoroller;
+package com.example.demo.domain.member.controller;
 
-import com.example.demo.service.MemberService;
+import com.example.demo.domain.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
